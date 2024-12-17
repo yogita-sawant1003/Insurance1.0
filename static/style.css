@@ -1,0 +1,351 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #c6a0c6, #a0c4f2); /* Magenta to blue gradient */
+    color: #333;
+    font-family: 'Poppins', sans-serif; /* Change to Poppins */
+    line-height: 1.6; /* Increase line height */
+    backdrop-filter: blur (10px);
+}
+
+/* Main Container */
+.container {
+    
+    margin:  auto;
+    background: #f4f4f9; /* Light grayish blue background */
+    padding: 40px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #d1c6e6; /* Light purple border */
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease-in-out;
+    border: 1px solid #e0e0e0; /* Lighter border */
+    height: 1100px;
+    width: 70pc;
+}
+
+.container:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Heading */
+h1 {
+    text-align: center;
+    color: #6a0dadf5; /* Deep purple */
+    font-size: 1 em;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+    letter-spacing: 1px;
+    text-transform: capitalize; /* Softens the look */
+    margin-left: 15pc;
+    ;
+}
+
+/* Form Section */
+.form-group {
+    margin-bottom: 25px;
+}
+
+/* Form Labels */
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #6a0dad; /* Deep purple */
+    text-transform: uppercase; /* Uppercase labels */
+    letter-spacing: 0.5px;
+}
+
+/* Form Inputs and Buttons */
+.form-group input, .form-group button {
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 1px solid #a0c4f2; /* Soft blue */
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    border: 1px solid #d1c6e6; /* Softer border */
+}
+
+/* Focus and Hover Effects */
+.form-group input:focus, .form-group button:focus {
+    border-color: #6a0dad; /* Deep purple */
+    box-shadow: 0 0 8px rgba(106, 13, 173, 0.5);
+    outline: none;
+}
+
+/* File Input Styling */
+.form-group input[type="file"] {
+    padding: 12px;
+    background: #e3d8f4; /* Light purple */
+    border: 1px dashed #900dad; /* Deep purple */
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.form-group input[type="file"]:hover {
+    background: #d1c6e6; /* Slightly darker purple */
+}
+
+/* Submit Button */
+.form-group button {
+    background: linear-gradient(to right, #c13584, #6a0dad); /* Magenta to deep purple gradient */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 10px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow */
+    padding: 15px;
+}
+
+.form-group button:hover {
+    background: linear-gradient(to right, #6a0dad, #c13584); /* Deep purple to magenta gradient */
+    transform: scale(1.05); /* Slight scale effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Deepens shadow on hover */
+
+}
+
+/* Results Section */
+.result {
+    margin-top: 30px;
+    padding: 20px;
+    background: #e3d8f4; /* Light purple */
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #a0c4f2; /* Soft blue */
+    transition: background 0.3s, border-color 0.3s;
+}
+
+.result:hover {
+    background: #d1c6e6; /* Slightly darker purple */
+    border-color: #6a0dad; /* Deep purple */
+}
+
+/* Results Heading */
+.result h2 {
+    margin-top: 0;
+    color: #6a0dad; /* Deep purple */
+    font-weight: 600;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #6a0dad; /* Underline */
+    padding-bottom: 10px; /* Padding for separation */
+}
+
+/* Results Content Styling */
+pre {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    border: 1px solid #a0c4f2; /* Soft blue */
+}
+
+/* MetaMask Section */
+.metamask-connect {
+   margin-left: 20px;
+    text-align: center;
+    margin-top: 0; /* Increased spacing */
+    padding: 0; /* Padding for better feel */
+    background: #f9f9f9; /* Subtle background */
+    border-radius: 8px; /* Match other sections */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow */    
+    
+}
+
+/* MetaMask Button */
+ #connectButton {
+    background: #c13584; /* Magenta */
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    font-weight: bold;
+    margin-left: 90px;
+    margin-top: 30px;
+    height: 40px;
+    transform:rotate();
+    transition-behavior: alternate (50);
+ }
+
+#connectButton:hover {
+    background: #a10d7a; /* Darker magenta */
+    box-shadow: 12px 12px 12px rgba(237, 232, 232, 0.1),-10px -10px -10px white; /* Slight scale effect */
+    transform: scale(1.5);
+    
+    
+}
+
+/* MetaMask Address Display */
+.metamask-address {
+    margin-top: 30px;
+    color: #0dad4d; /* Deep purple */
+    font-weight: bold;
+    font-size: 1.1em;
+    display: flex;
+    flex-direction: row;
+    margin-left: 90px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 2.2em;
+        
+    }
+    .form-group input, .form-group button {
+        font-size: 14px;
+    }
+}
+nav {
+    background: #6a0dad; /* Deep purple */
+    padding: 10px 0; /* Padding for the navbar */
+    /* border-radius: 12px; */
+   /* Space below navbar */
+    height: 60px;
+    width: 75pc;
+    margin-left: 10pc;
+}
+
+.navbar {
+    display: flex; /* Use flexbox for horizontal layout */
+    justify-content: center; /* Center items */
+    list-style: none; /* Remove default list styles */
+    padding: 0;
+}
+
+.navbar li {
+    margin: 0 5pc; /* Spacing between items */
+}
+
+.navbar a {
+    /* Existing styles for links */
+    color: white; /* White text */
+    text-decoration: none; /* Remove underline */
+    padding: 8px 16px; /* Padding around links */
+    border-radius: 9px; /* Rounded corners */
+    display: inline-block; /* Ensure the element can be transformed */
+    border-bottom: 2px solid #f1ecec;
+    background-color: #6a0dad;
+    width: 400px; /* Fixed width for consistent size */
+    height: 50px; /* Fixed height for consistent size */
+    line-height: 50px; /* Vertically center text */
+    text-align: center; /* Horizontally center text */
+    transition: background 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    font-size: larger;
+}
+
+
+
+.navbar a span {
+    display: inline-block; /* Allow scaling effect */
+    transition: transform 0.3s ease; /* Smooth transition for scaling */
+}
+
+.navbar a:hover span {
+    transform: scale(1.5); /* Scale effect on text only */
+    color: #c13584;
+}
+
+/* Adjustments for the container */
+
+
+
+/* Adjust upload section styles */
+.upload-section {
+    margin-top: 20px;
+    display:flex;
+    flex-direction: row; /* Spacing between sections */
+    justify-content: space-evenly;
+   
+}
+.top 
+{
+    display:flex;
+    flex-direction: row;
+    margin-left: 12pc;
+    margin-bottom: 2pc;
+    
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+}
+.qr-code-container{
+    margin-left: 20pc;
+    margin-top: 4pc;
+}
+.top2
+{
+    margin-left:9.5pc ;
+}
+#uploadForm
+{
+    border: 2px solid #c13584; /* Add a solid border with a color */
+    width: 40pc;
+    background:linear-gradient(rgb(228, 243, 249) );                
+    padding: 20px;
+    border-radius: 8px;
+}
+#cidForm {
+    border: 2px solid #c13584; /* Add a solid border with a color */
+    width: 40pc;
+    margin-left: 200px;
+    height: 20pc;
+    border-radius: 8px; /* Optional: Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+    padding: 20px; /* Add some padding for better spacing */
+    background:linear-gradient(rgb(228, 243, 249))
+}
+#uploadDriver
+{
+    border: 2px solid #c13584; /* Add a solid border with a color */
+    width: 40pc;
+    background:linear-gradient(rgb(228, 243, 249) );                
+    padding: 20px;
+    border-radius: 8px;
+}
+#fetchResultsForm
+{
+    border: 2px solid #c13584; /* Add a solid border with a color */
+    width: 40pc;
+    margin-left: 200px;
+    height: 20pc;
+    border-radius: 8px; /* Optional: Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+    padding: 20px; /* Add some padding for better spacing */
+    background:linear-gradient(rgb(228, 243, 249))
+}
+#uploadDTC
+{
+    border: 2px solid #c13584; /* Add a solid border with a color */
+    width: 40pc;
+    background:linear-gradient(rgb(228, 243, 249) );                
+    padding: 20px;
+    border-radius: 8px;
+
+}
+#cidForm2
+{
+    border: 2px solid #c13584; /* Add a solid border with a color */
+    width: 40pc;
+    margin-left: 200px;
+    height: 20pc;
+    border-radius: 8px; /* Optional: Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+    padding: 20px; /* Add some padding for better spacing */
+    background:linear-gradient(rgb(228, 243, 249))
+}

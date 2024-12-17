@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engine Health Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- Include CryptoJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <!-- Include QRCode.js if not already included -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+</head>
+<body>
+    <div class="main">
+
+        <!-- Navigation Bar -->
+        <nav>
+            <ul class="navbar">
+                <li><a href="#upload-file-1"><span>Engine Prediction & Driver Analysis</span></a></li>
+                <!-- <li><a href="#upload-file-2"><span>Driver behaviour Prediction</span></a></li> -->
+                <li><a href="#upload-file-3"><span>DTC Analysis</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <!-- MetaMask Connect Section -->
+            <div class="top">
+                <h1>Prediction Engine</h1>
+                <div class="top2">
+                    <button id="connectButton">Connect MetaMask</button>
+                    <div id="walletAddress" class="metamask-address"></div>
+                </div>
+            </div>
+
+            <!-- Combined Section for Engine Prediction and CID Submission -->
+            <div id="upload-file-1" class="upload-section">
+                <form id="uploadForm" enctype="multipart/form-data" class="upload">
+                    <div class="form-group">
+                        <label for="file">Upload File for Engine Prediction</label>
+                        <input type="file" id="file" name="file" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Upload and Get CID</button>
+                    </div>
+                </form>
+                <form id="cidForm">
+                    <div class="form-group">
+                        <label for="cid">Enter File CID:</label>
+                        <input type="text" id="cid" name="cid" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Submit CID</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Combined Section for Driver Behavior Prediction and Fetch Results -->
+            <div id="upload-file-2" class="upload-section">
+                <form id="uploadDriver" enctype="multipart/form-data" class="upload">
+                    <div class="form-group">
+                        <label for="file">Upload File for Driver Behaviour Prediction</label>
+                        <input type="file" name="file" id="file" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Upload and Get CID</button>
+                    </div>
+                </form>
+                <form id="fetchResultsForm">
+                    <div class="form-group">
+                        <label for="fetchResultsCid">Enter CID to Fetch Results:</label>
+                        <input type="text" id="fetchResultsCid" name="fetchResultsCid" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Fetch Results</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Combined Section for DTC Prediction and CID Submission -->
+            <div id="upload-file-3" class="upload-section">
+                <form id="uploadDTC" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="file">Upload File for DTC Prediction</label>
+                        <input type="file" id="file" name="file" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Upload and Get CID</button>
+                    </div>
+                </form>
+                <form id="cidForm2">
+                    <div class="form-group">
+                        <label for="cid2">Enter File CID:</label>
+                        <input type="text" id="cid2" name="cid" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Submit CID</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Display fetched results -->
+            <div id="fetchedResults" class="fetched-results"></div>
+
+            <!-- Display general results -->
+            <div id="result" class="result"></div>
+
+            <!-- QR code and Signature display -->
+            <div id="qrCodeContainer" class="qr-code-container"></div>
+
+            <!-- Signature Verification Section -->
+            <div id="verificationResult" class="verification-result"></div> <!-- Section to display verification result -->
+        </div>
+    </div>
+
+    <!-- Include Web3 and QRCode libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.5.2/web3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Handle form submission for signature verification
+            $('#verifySignatureForm').submit(function(event) {
+                event.preventDefault(); // Prevent the default form submission
+    
+                const data = $('#signatureData').val();
+                const signature = $('#signature').val();
+    
+                if (data && signature) {
+                    verifySignature(data, signature);
+                } else {
+                    $('#verificationResult').html('<p>Please provide data and signature.</p>');
+                }
+            });
+            $('.upload-section').hide();
+
+            // Show the first section by default
+            $('#upload-file-1').show();
+    
+            function verifySignature(data, signature) {
+                $.ajax({
+                    url: '/verify_signature',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ data: data, signature: signature }),
+                    success: function(response) {
+                        $('#verificationResult').html(
+                            response.is_valid
+                                ? '<p>The signature is valid.</p>'
+                                : '<p>The signature is invalid.</p>'
+                        );
+                    },
+                    error: function(error) {
+                        $('#verificationResult').html('<p>Error verifying signature.</p>');
+                    }
+                });
+            }
+            $('.navbar a').click(function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                var target = $(this).attr('href'); // Get the target section ID
+
+                // Hide all sections and show the targeted one
+                $('.upload-section').hide();
+                $(target).show();
+            });
+        });
+    </script>
+
+</body>
+</html>

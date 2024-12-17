@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify TOTP Code</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Verify Your TOTP Code</h1>
+    <form id="verifyForm">
+        <div>
+            <label for="user_id">User ID:</label>
+            <input type="text" id="user_id" name="user_id" required>
+        </div>
+        <div>
+            <label for="totp_code">TOTP Code:</label>
+            <input type="text" id="totp_code" name="totp_code" required>
+        </div>
+        <button type="submit">Verify</button>
+    </form>
+    <div id="verificationResult"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#verifyForm').submit(function(event) {
+                event.preventDefault();
+
+                const userId = $('#user_id').val();
+                const totpCode = $('#totp_code').val();
+
+                $.ajax({
+                    url: '/verify_totp',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ user_id: userId, totp_code: totpCode }),
+                    success: function(response) {
+                        $('#verificationResult').html('<p>TOTP code verified successfully.</p>');
+                    },
+                    error: function() {
+                        $('#verificationResult').html('<p>Invalid TOTP code or User ID.</p>');
+                    }
+                });
+            });
+        });
+    </script>
+    <a href="/">Back to Home</a>
+</body>
+</html>

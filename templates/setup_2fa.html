@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Set Up Two-Factor Authentication</title>
+</head>
+<body>
+    <h1>Set Up Two-Factor Authentication</h1>
+    <img src="{{ url_for('static', filename='qr_code.png') }}" alt="QR Code">
+    <form action="{{ url_for('verify_2fa') }}" method="post">
+        <label for="code">Enter the code from Google Authenticator:</label>
+        <input type="text" id="code" name="code" required>
+        <button type="submit">Verify</button>
+        
+    </form>
+</body>
+</html>
